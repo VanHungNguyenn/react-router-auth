@@ -1,25 +1,36 @@
-import logo from './logo.svg';
-import './App.css';
+import Register from './components/Register'
+import Login from './components/Login'
+import Home from './components/Home'
+import Layout from './components/Layout'
+import Editor from './components/Editor'
+import Admin from './components/Admin'
+import Missing from './components/Missing'
+import Unauthorized from './components/Unauthorized'
+import Lounge from './components/Lounge'
+import LinkPage from './components/LinkPage'
+
+import { Routes, Route } from 'react-router-dom'
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+	return (
+		<Routes>
+			<Route path='/' element={<Layout />}>
+				<Route path='login' element={<Login />} />
+				<Route path='register' element={<Register />} />
+				<Route path='linkpage' element={<LinkPage />} />
+				<Route path='unauthorized' element={<Unauthorized />} />
+
+				{/* we want to protect these routes */}
+				<Route path='home' element={<Home />} />
+				<Route path='editor' element={<Editor />} />
+				<Route path='admin' element={<Admin />} />
+				<Route path='lounge' element={<Lounge />} />
+
+				{/* catch all */}
+				<Route path='*' element={<Missing />} />
+			</Route>
+		</Routes>
+	)
 }
 
-export default App;
+export default App
